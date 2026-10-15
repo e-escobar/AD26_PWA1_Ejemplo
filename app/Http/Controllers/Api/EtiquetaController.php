@@ -11,11 +11,11 @@ class EtiquetaController extends Controller
 {
     public function index()
     {
-        return Etiqueta::all();
+        return Etiqueta::with('recetas')->get();
     }
 
     public function show(Etiqueta $etiqueta)
     {
-        return $etiqueta;
+        return $etiqueta->load('recetas');
     }
 }
