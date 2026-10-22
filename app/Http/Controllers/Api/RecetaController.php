@@ -6,16 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Receta;
+use App\Http\Resources\RecetaResource;
 
 class RecetaController extends Controller
 {
     public function index()
     {
-        return Receta::with('categoria','etiquetas','user')->get();
+        return RecetaResource::collection(Receta::with('categoria','etiquetas','user')->get());
     }
 
     public function show(Receta $receta)
     {
-        return $receta->load('categoria','etiquetas','user');
+        return new RecetaResource($receta->load('categoria','etiquetas','user'));
     }
 }
