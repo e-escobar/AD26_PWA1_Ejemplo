@@ -24,7 +24,6 @@ class UpdateRecetasRequest extends FormRequest
     {
         return [
             'categoria_id' => 'required|exists:categorias,id',
-            'user_id' => 'required|exists:users,id',
             'titulo' => 'required|string|max:255',
             'descripcion' => 'required|string',
             'ingredientes' => 'required|string',
