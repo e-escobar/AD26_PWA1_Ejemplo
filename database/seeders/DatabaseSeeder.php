@@ -22,12 +22,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Invocar arhivos de RolSeeder 
+        $this->call(RolSeeder::class);
+
+
         User::factory()->create([
             'name' => 'Eric Escobar Mendoza',
             'email' => 'eescobar@itsch.edu.mx',
-            ]);
+            ])->assignRole('Administrador');
+        
+        User::factory()->create([
+            'name' => 'Iraic Alcantar Alcantar',
+            'email' => 'iraic@itsch.edu.mx',
+            ])->assignRole('Editor');
 
-        User::factory(29)->create();
+        User::factory(29)->create()->each(function ($user) {
+            $user->assignRole('Usuario');
+        });
 
         Categoria::factory(10)->create();
         Receta::factory(100)->create();
